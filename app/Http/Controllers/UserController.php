@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Handlers\ImageUploadHandler;
 
 class UserController extends Controller
 {
@@ -25,15 +26,28 @@ class UserController extends Controller
     //显示更新资料界面
     public function edit(User $user)
     {
-//        $this->authorize('edit', $user);
+//
         return view('users.edit', compact('user'));
     }
 
     //执行更新资料
     public function update(UserRequest $request, User $user)
     {
-        $user->update($request->all());
+        $uploader = new ImageUploadHandler;
+
+        $this->authorize('edit', $user);        //  App\Policies\UserPolicy 是否为当前登录用户
+        $data = $request->all();         //  自动注入 Request\UserRequest 里面定义规则
+
+        if($request->avatar) {
+            $res = $uploader->save($request->avatar, 'avatar', $user->id);
+            if($res){
+                $data['avatar'] = $res['path'];
+            }
+        }
+        $user->update($data);
         return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功');
     }
+
+
 
 }
