@@ -11,6 +11,8 @@
 |
 */
 
+require __DIR__ . '/helpers.php';   //引入自定义辅助函数
+
 $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
