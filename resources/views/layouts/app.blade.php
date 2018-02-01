@@ -17,7 +17,7 @@
 <body>
 <div id="app" class="{{ route_class() }}-page">
 
-    @include('layouts._header')
+    @include('layouts.header')
 
     <div class="container">
 
@@ -25,7 +25,7 @@
 
     </div>
 
-    @include('layouts._footer')
+    @include('layouts.footer')
 </div>
 
 <!-- Scripts -->
