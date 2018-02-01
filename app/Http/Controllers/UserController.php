@@ -11,10 +11,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('auth', [
-//            'edit',
-//            'update'
-//        ]);
+        $this->middleware('auth', ['except' => [ 'show' ]]);
     }
 
     //用户个人中心
@@ -26,7 +23,7 @@ class UserController extends Controller
     //显示更新资料界面
     public function edit(User $user)
     {
-//
+        $this->authorize('edit', $user);
         return view('users.edit', compact('user'));
     }
 
@@ -35,8 +32,8 @@ class UserController extends Controller
     {
         $uploader = new ImageUploadHandler;
 
-        $this->authorize('edit', $user);        //  App\Policies\UserPolicy 是否为当前登录用户
-        $data = $request->all();         //  自动注入 Request\UserRequest 里面定义规则
+        $this->authorize('edit', $user);        //   App\Policies\UserPolicy 是否为当前登录用户
+        $data = $request->all();                //  自动注入 Request\UserRequest 里面定义规则
 
         if($request->avatar) {
             $res = $uploader->save($request->avatar, 'avatar', $user->id);
