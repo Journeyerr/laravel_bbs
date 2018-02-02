@@ -11,7 +11,7 @@ class CategoriesController extends Controller
     public function show(Category $category)
     {
         //读取分类 id 关联的话题 并20分页
-        $topics = Topic::where('category_id', $category->id)->paginate(20);
+        $topics = Topic::where('category_id', $category->id)->with('user', 'category')->paginate(20);
 
         //显示模板传递参数
         return view('topics.index', compact('topics', 'category'));
