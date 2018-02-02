@@ -17,7 +17,8 @@ class UserController extends Controller
     //用户个人中心
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $topics = $user->topics()->orderBy('id','desc')->paginate(5);
+        return view('users.show', compact('user', 'topics'));
     }
 
     //显示更新资料界面
