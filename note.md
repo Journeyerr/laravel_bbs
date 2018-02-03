@@ -94,3 +94,20 @@
         if_uri_pattern() - 判断当前的 url 是否含有指定的字符；>
 
 
+#####Guzzle 库是一套强大的 PHP HTTP 请求套件
+
+* 安装：composer require "guzzlehttp/guzzle:~6.3"
+
+* 使用：https://github.com/guzzle/guzzle
+
+
+##### PinYin 基于 CC-CEDICT 词典的中文转拼音工具
+
+* 安装：  composer require "overtrue/pinyin:~3.0"
+
+* 使用：   https://github.com/overtrue/pinyin
+
+    
+
+
+

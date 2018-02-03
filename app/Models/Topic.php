@@ -34,7 +34,12 @@ class Topic extends Model
         return $query->with('user', 'category');
     }
 
-
+    //允许附加 URL 参数的设定 把需要的参数都接到url上
+    public function link($params = [])
+    {
+        //array_merge() 函数把一个或多个数组合并为一个数组
+        return route('topics.show', array_merge([$this->id, $this->slug], $params));
+    }
 
 
 }

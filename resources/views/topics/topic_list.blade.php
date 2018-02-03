@@ -17,7 +17,7 @@
                     {{--</a>--}}
 
                     <div class="media-heading">
-                        <a href="{{ route('topics.show', [$topic->id]) }}" title="{{ $topic->title }}">
+                        <a href="{{ $topic->link() }}" title="{{ $topic->title }}">
                             {{ $topic->title }}
                         </a>
                         <a class="pull-right" href="{{ route('topics.show', [$topic->id]) }}" >
