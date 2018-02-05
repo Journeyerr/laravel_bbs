@@ -32,4 +32,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Topic::class);
     }
+
+    // 获取  用户  所有的回复
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }

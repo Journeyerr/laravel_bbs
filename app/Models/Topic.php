@@ -41,5 +41,11 @@ class Topic extends Model
         return route('topics.show', array_merge([$this->id, $this->slug], $params));
     }
 
+    // 获取 该帖子 所有的回复
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
 
 }

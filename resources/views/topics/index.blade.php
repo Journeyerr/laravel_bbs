@@ -24,7 +24,7 @@
 
                 <div class="panel-body">
                     {{-- 话题列表 --}}
-                    @include('topics.topic_list', ['topics' => $topics])
+                    @include('topics._topic_list', ['topics' => $topics])
                     {{-- 分页 --}}
                     {!! $topics->render() !!}
                 </div>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="col-lg-3 col-md-3 sidebar">
-            @include('topics.sidebar')
+            @include('topics._sidebar')
         </div>
     </div>
 

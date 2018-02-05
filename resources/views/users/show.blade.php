@@ -39,30 +39,17 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#">Ta 的话题</a></li>
-                        <li><a href="#">Ta 的回复</a></li>
-                    </ul>
+                        <li class="{{ !if_query('tab', 'replies') ? 'active' : ''  }}"><a href="{{ route('users.show', $user->id) }}">Ta 的话题</a></li>
 
-                @if (count($topics))
-                    <ul class="list-group">
-                        @foreach ($topics as $topic)
-                            <li class="list-group-item">
-                                <a href="{{ route('topics.show', $topic->id) }}">
-                                    {{ $topic->title }}
-                                </a>
-                                <span class="meta pull-right">
-                                    {{ $topic->reply_count }} 回复
-                                <span> ⋅ </span>
-                                     {{ $topic->created_at->diffForHumans() }}
-                                </span>
-                            </li>
-                        @endforeach
+
+                        <li class="{{ if_query('tab', 'replies') ? 'active' : '' }}"><a href="{{ route('users.show', [$user->id, 'tab' => 'replies']) }}">Ta 的回复</a></li>
                     </ul>
-                @else
-                    <div class="empty-block">暂无数据 ~_~ </div>
-                @endif
-                    {{-- 分页 --}}
-                    {!! $topics->render() !!}
+                    @if (if_query('tab', 'replies'))
+                        @include('users._replies', ['replies' => $user->replies()->with('topic')->orderBy('id', 'desc')->paginate(5)])
+                    @else
+
+                        @include('users._topics', ['topics' => $user->topics()->orderBy('id', 'desc')->paginate(5)])
+                    @endif
 
                 </div>
             </div>

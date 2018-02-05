@@ -107,7 +107,58 @@
 
 * 使用：   https://github.com/overtrue/pinyin
 
+
     
+##### 一个模块开发流程
 
+* 控制器，模型，视图，Request <br><br>
+    [数据生成：database/factories/XXXXFactory.php]   <br><br>
+    [数据填充逻辑:database/seeds/XXXXTableSeeder.php]
+    
+    >模型:
+    
+    * 一个 [ 话题 ] 模型里面： " 获取该话题所有 回复 ->hasMany(‘回复模型’)"
+            
+             return $this->hasMany(Reply::class);
 
-
+    * 一个 [ 话题 ] 模型里面：" 获取该话题所属 用户 ->belongsTo(‘用户模型’)  "
+            
+            return $this->belongsTo(User::class);
+            
+    > Request  App\Http\Requests\UserRequest.php:
+    
+            //自定义字段规则
+            public function rules()
+                {
+                    return [
+                        'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id()
+                    ];
+                }
+                
+             //自定义不满足时提示的信息    
+            public function messages()
+                {
+                    return [
+                        'name.unique' => '用户名已被占用，请重新填写',
+                        'name.regex' => '用户名只支持中英文、数字、横杆和下划线。',
+                    ];
+                }
+            
+    > App\Http\Controllers\UserController.php
+    
+             //执行更新资料
+             public function update(UserRequest $request)
+             {
+                $data = $request->all();   //  自动注入 Request\UserRequest 里面定义规则
+             }
+         
+    > 验证不通过，在视图可以通过 $errors 变量获得错误信息，可以通过 count($errors) 判断是否产生错误
+    
+            @if (count($errors) > 0)
+                    <h4>有错误发生：</h4>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+            @endif
