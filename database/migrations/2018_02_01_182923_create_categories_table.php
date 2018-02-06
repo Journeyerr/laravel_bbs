@@ -7,6 +7,8 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCategoriesTable extends Migration
 {
     /**
+     * 创建话题分类表
+     *
      * Run the migrations.
      *
      * @return void

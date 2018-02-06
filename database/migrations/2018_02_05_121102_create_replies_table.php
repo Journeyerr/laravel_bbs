@@ -5,6 +5,8 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateRepliesTable extends Migration 
 {
+    //创建话题回复表
+
 	public function up()
 	{
 		Schema::create('replies', function(Blueprint $table) {

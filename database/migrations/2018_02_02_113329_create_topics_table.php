@@ -5,6 +5,8 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTopicsTable extends Migration 
 {
+    //创建话题数据表
+
 	public function up()
 	{
 		Schema::create('topics', function(Blueprint $table) {

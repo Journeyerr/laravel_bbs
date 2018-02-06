@@ -7,6 +7,8 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration
 {
     /**
+     * 创建用户数据表
+     *
      * Run the migrations.
      *
      * @return void

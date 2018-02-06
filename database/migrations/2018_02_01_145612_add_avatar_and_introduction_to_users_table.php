@@ -6,8 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddAvatarAndIntroductionToUsersTable extends Migration
 {
-    //增加个人简介 头像 字段
     /**
+     * 增加个人简介 头像 字段
+     *
      * Run the migrations.
      *
      * @return void

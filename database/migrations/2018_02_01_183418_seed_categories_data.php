@@ -7,6 +7,9 @@ use Illuminate\Database\Migrations\Migration;
 class SeedCategoriesData extends Migration
 {
     /**
+     *
+     * 利用建表的方法，填充话题分类数据
+     *
      * Run the migrations.
      *
      * @return void
