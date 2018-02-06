@@ -38,4 +38,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reply::class);
     }
+
+    //将消息通知清零
+    public function notifications()
+    {
+        $this->notification_count  = 0;
+        $this->save();
+    }
 }

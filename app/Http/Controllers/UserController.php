@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -46,6 +48,17 @@ class UserController extends Controller
         return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功');
     }
 
-
+    //用户通知
+    public function notifications()
+    {
+        $notifications = DB::table('notifications')->where('notifiable_id', Auth::id())->paginate(15);
+        if($notifications){
+            foreach ( $notifications as $notification) {
+                $notification->data = json_decode($notification->data, true);
+            }
+        }
+        Auth::user()->notifications();
+        return view('users.notifications', compact('notifications'));
+    }
 
 }

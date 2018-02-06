@@ -9,6 +9,9 @@
 
             <div class="infos">
                 <div class="media-heading">
+                    @if($reply->user_id == $topic->user_id)
+                        <span style="color: red">楼主:</span>
+                    @endif
                     <a href="{{ route('users.show', [$reply->user_id]) }}" title="{{ $reply->user->name }}">
                         {{ $reply->user->name }}
                     </a>
