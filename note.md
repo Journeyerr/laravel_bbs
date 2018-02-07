@@ -175,3 +175,56 @@
         * model_has_roles —— 模型与角色的关联表，用户拥有什么角色在此表中定义，一个用户能拥有多个角色；
         * role_has_permissions —— 角色拥有的权限关联表，如管理员拥有查看后台的权限都是在此表定义，一个角色能拥有多个权限；
         * model_has_permissions —— 模型与权限关联表，一个模型能拥有多个权限。
+        
+        
+##### 用户切换工具
+    
+* sudo-su  ： https://github.com/viacreative/sudo-su
+
+
+* 安装
+    > app/Providers/AppServiceProvider.php
+    
+        public function register()
+            {
+                if (app()->isLocal()) {
+                    $this->app->register(\VIACreative\SudoSu\ServiceProvider::class);
+                }
+            }
+            
+* 发布资源文件
+    > php artisan vendor:publish --provider="VIACreative\SudoSu\ServiceProvider"
+    
+        会生成：
+        
+        /public/sudo-su 前端 CSS 资源存放文件夹；
+        config/sudosu.php 配置信息文件；
+        
+* 修改配置文件：
+    > config/sudosu.php
+    
+        <?php
+        
+        return [
+        
+            // 允许使用的顶级域名
+            'allowed_tlds' => ['dev', 'local', 'test'],
+        
+            // 用户模型
+            'user_model' => App\Models\User::class
+        
+        ];
+        
+    ######Sudosu 为了避免开发者在生产环境下误开启此功能，在配置选项 allowed_tlds 里做了域名后缀的限制，tld 为 Top Level Domain 的简写。此处因我们的项目域名为 larabbs.test，故将 test 域名后缀添加到 allowed_tlds 数组中。
+        
+        
+*  模板植入
+    > resources/views/layouts/app.blade.php
+    
+           @if (app()->isLocal())
+               @include('sudosu::user-selector')
+           @endif
+       
+           <!-- Scripts -->
+           <script src="{{ asset('js/app.js') }}"></script>
+           @yield('scripts')
