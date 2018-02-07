@@ -228,3 +228,23 @@
            <!-- Scripts -->
            <script src="{{ asset('js/app.js') }}"></script>
            @yield('scripts')
+           
+#####  Laravel Administrator 管理后台
+
+       github: https://github.com/summerblue/administrator
+
+* 安装：
+    > composer require "summerblue/administrator:~1.1"
+    
+* 发布资源文件
+    >  php artisan vendor:publish --provider="Frozennode\Administrator\AdministratorServiceProvider"
+    
+        会生成：
+            config/administrator.php —— 配置信息。
+            public/packages/summerblue/administrator —— 前端资源文件，这是用来做页面渲染的。
+    
+* 创建必要的文件夹
+    > Administrator 会监测 settings_config_path 和 model_config_path 选项目录是否能正常访问，否则会报错，故我们先使用以下命令新建目录
+        
+            config/administrator 
+            config/administrator/settings
