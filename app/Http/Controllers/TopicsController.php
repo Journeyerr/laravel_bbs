@@ -8,6 +8,7 @@ use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TopicsController extends Controller
 {
@@ -66,7 +67,10 @@ class TopicsController extends Controller
 	public function destroy(Topic $topic)
 	{
         $this->authorize('destroy', $topic);
-		$topic->delete();
+
+        $topic->delete();
+        //删除该话题所有的回复
+        DB::table('replies')->where('topic_id', $topic->id)->delete();
 
 		return redirect()->route('topics.index')->with('message', '删除成功！');
 	}
