@@ -48,7 +48,20 @@ class User extends Authenticatable
         $this->save();
     }
 
-    //设置密码
+
+    /*
+     *在 Eloquent 模型实例中获取或设置某些属性值的时候，访问器和修改器允许你对 Eloquent 属性值进行格式化。
+     * 有两种方法可以修改 Eloquent 模型属性的值，一种是『访问器』，另一种是『修改器』。
+     *访问器和修改器最大的区别是『发生修改的时机』，访问器是 访问属性时 修改，修改器是在 写入数据库前 修改。
+     *
+     *在我们的密码加密的场景里，我们会使用修改器在密码即将入库前，对其进行加密。
+     * 命名规范是 set{属性的驼峰式命名}Attribute，
+     * 当我们给属性赋值时，如 $user->password = 'password'，该修改器将被自动调用：
+     *
+     * 如果更改邮箱： setEmailAttribute($value) 会自动被调用
+     **/
+
+    //因为后台会明文存储密码，修改密码时会自动调用此方法，如果明文则加密
     public function setPasswordAttribute($value)
     {
         // 如果值的长度等于 60，即认为是已经做过加密的情况
