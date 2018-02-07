@@ -57,7 +57,8 @@ class UserController extends Controller
                 $notification->data = json_decode($notification->data, true);
             }
         }
-        Auth::user()->notifications();
+        //归零通知总数
+        Auth::user()->clearNotification();
         return view('users.notifications', compact('notifications'));
     }
 

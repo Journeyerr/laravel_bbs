@@ -40,7 +40,7 @@ class User extends Authenticatable
     }
 
     //将消息通知清零
-    public function notifications()
+    public function clearNotification()
     {
         $this->notification_count  = 0;
         $this->save();
