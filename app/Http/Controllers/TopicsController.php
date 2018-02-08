@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Handlers\ImageUploadHandler;
 use App\Models\Category;
+use App\Models\Link;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
@@ -18,10 +19,11 @@ class TopicsController extends Controller
     }
 
     //话题列表
-	public function index(Request $request, Topic $topic)
+	public function index(Request $request, Topic $topic, Link $link)
 	{
         $topics = $topic->withOrder($request->order)->paginate(20);
-		return view('topics.index', compact('topics'));
+        $links = $link->getAllCached();
+		return view('topics.index', compact('topics', 'links'));
 	}
 
 	//话题展示
