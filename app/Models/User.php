@@ -10,6 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+    use Traits\LastActivedAtHelper;
 
     /**
      * The attributes that are mass assignable.
