@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@root')->name('root');
+Route::get('/', 'TopicsController@index')->name('root');
 
 //Laravel 自带了用户认证功能 php artisan make:auth； 生成路由  Auth::routes() 及 auth 文件夹视图
 //  Auth::routes() 等同于一下 路由
