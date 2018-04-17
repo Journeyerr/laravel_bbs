@@ -250,3 +250,16 @@
             config/administrator/settings
             
        
+* 注意：要使用后台管理功能
+    
+    1： 通过 Composer 安装：
+    
+    > composer require "spatie/laravel-permission:~2.7"
+    
+    2：生成数据库迁移文件：
+    
+    > php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="migrations"
+    
+    3: 生成配置信息：配置信息存放于 config/permission.php 
+    
+    > php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="config"

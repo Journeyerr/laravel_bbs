@@ -3,7 +3,7 @@
     <ul class="list-group">
         @foreach ($replies as $reply)
             <li class="list-group-item">
-                <a href="{{  route('topics.show', array_merge([$reply->id, $reply->slug])) }}">
+                <a href="{{  route('topics.show', array_merge([$reply->topic_id, $reply->slug])) }}">
                     {{ $reply->topic->title }}
                 </a>
 

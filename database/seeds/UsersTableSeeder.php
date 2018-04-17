@@ -43,17 +43,17 @@ class UsersTableSeeder extends Seeder
         User::insert($user_array);
 
         // 单独处理第一个用户的数据
-        $user = User::find(13);
-//        $user->name = 'totoro';
-//        $user->email = 'zay@qq.com';
-//        $user->avatar = 'http://bbs.test/uploads/images/avatar/201802/01//1_1517479382_1SvdNrjvNa.png';
-//        $user->save();
+        $user = User::find(1);
+        $user->name = 'totoro';
+        $user->email = 'zay@qq.com';
+        $user->avatar = 'http://bbs.test/uploads/images/avatar/201802/01//1_1517479382_1SvdNrjvNa.png';
+        $user->save();
 
         // 初始化用户角色，将 1 号用户指派为『站长』
         $user->assignRole('Founder');
 
         // 将 2 号用户指派为『管理员』
-        $user = User::find(14);
+        $user = User::find(2);
         $user->assignRole('Maintainer');
 
     }
