@@ -29,6 +29,12 @@ class TopicsController extends Controller
 	//话题展示
     public function show(Topic $topic)
     {
+        // 将填充数据的回复数统计并插入 避免删除时候出错
+//        $topics = DB::table('topics')->pluck('id');
+//        foreach ($topics as $id) {
+//            $count = DB::table('replies')->where('topic_id',$id)->count();
+//            DB::table('topics')->where('id',$id)->update(['reply_count'=>$count]);
+//        }
         return view('topics.show', compact('topic'));
     }
 
