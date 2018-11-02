@@ -30,9 +30,9 @@
     @include('layouts.footer')
 </div>
 
-    @if (app()->isLocal())
-        @include('sudosu::user-selector')
-    @endif
+    {{--@if (app()->isLocal())--}}
+        {{--@include('sudosu::user-selector')--}}
+    {{--@endif--}}
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
