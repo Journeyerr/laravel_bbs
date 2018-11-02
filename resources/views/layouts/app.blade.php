@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="description" content="@yield('description', setting('seo_description', 'LaraBBS 爱好者社区。'))" />
-    <meta name="keyword" content="@yield('keyword', setting('seo_keyword', 'LaraBBS,社区,论坛,开发者论坛'))" />
-    <title>@yield('title', 'LaraBBS') - Laravel 进阶教程</title>
+    <meta name="description" content="{{setting('web','seo','description')}}" />
+    <meta name="keyword" content="{{setting('web','seo','keyword')}}" />
+    <title>LaraBBS - Laravel 进阶教程</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
