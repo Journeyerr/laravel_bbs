@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="description" content="{{config('web.seo.description')}}" />
     <meta name="keyword" content="{{config('web.seo.keyword')}}" />
-    <title>LaraBBS - Laravel 进阶教程</title>
+    <title>AnYuan 进阶教程</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
